@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hero Form</title>
+</head>
+<body>
+
+	<form id="hero">
+		<label for="heroName"><b>Hero Name:</b></label>
+		<input type="text" id="heroName" name="heroName" autofocus placeholder="Hero Name">
+		<label for="realName"><b>Real Name:</b></label>
+		<input type="password" id="realName" name="realName" placeholder="Real Name">
+		<br />
+		<!-- Super Powers Checklist -->
+		<p><b>Super Powers</b></p>
+		<label for="flight">Flight:</label>
+		<input type="checkbox" id="flight" value="flight" name='powers'>
+		<label for="strength">Super Strength:</label>
+		<input type="checkbox" id="strength" value="strength" name='powers'>
+		<label for="speed">Super Speed:</label>
+		<input type="checkbox" id="speed" value="speed" name='powers'>
+		<label for="energy">Energy Blasts:</label>
+		<input type="checkbox" id="energy" value="energy" name='powers'>
+		<label for="telekinesis">Telekinesis:</label>
+		<input type="checkbox" id="telekinesis" value="telekinesis" name='powers'>
+		<!-- Villian/Hero Radio Button Options -->
+		<br />
+		<p><b>What are you?</b></p>
+		<label for="hero">Hero:</label>
+		<input type="radio" name="category" value="hero" id="hero">
+		<label for="villian">Villian:</label>
+		<input type="radio" name="category" value="villian" id="villian">
+		<label for="anti-hero">Anti-Hero:</label>
+		<input type="radio" name="category" value="Antihero" id="anti-hero">
+		<br />
+		<br />
+		<label for="age"><b>Age:</b></label>
+		<input type="number" name="age" id="age" min=0 step=1 />
+		<label for='City'><b>Base of Operations:</b></label>
+		<select	name='city'	id='city'>
+			<option	value='' selected>Choose a City</option>
+			<option	value='Metropolis'>Metropolis</option>
+			<option	value='Gotham City'>Gotham City</option>
+			<option	value='Keystone City'>Keystone City</option>
+			<option	value='Coast City'>Coast City</option>
+			<option	value='Star City'>Star City</option>
+		</select>
+		<br />
+		<br />
+		<label for="origin"><b>Origin Story</b></label>
+		<br />
+		<textarea name="origin" id="origin" cols="60" rows="20"></textarea>
+		<br />
+		<br />
+		<button type="submit">Submit</button>
+	</form>
+
+	<script>
+		const heroForm = document.forms['hero'];
+		heroForm.addEventListener('submit', makeHero, false);
+
+		function makeHero (event){
+			// Prevent the form from being submitted
+			event.preventDefault();
+			// Create an empty object
+			const hero = {};
+			// create a name property based on what was passed in the form.
+			hero.name = heroForm.heroName.value; 
+			hero.realName = heroForm.realName.value;
+			
+			// use the spread operator to turn the node list into an array.iterate over the super powers checkboxes and add the checked ones to the hero.powers
+			hero.powers = [...heroForm.powers].filter(box => box.checked).map(box => box.value);
+
+			// The value of the radio button that was selected is stored in form.category.value (in this case it is "Antithero"). This means we can	assign a category property to our hero object
+			hero.category = heroForm.category.value;
+			
+			// add an input type of 'number' to	our form so	we can enter the age of our hero.
+			hero.age = heroForm.age.value;
+
+			// grab the city that was sumitted in the form
+			hero.city = heroForm.city.value;
+
+			// grab the origin story that was sumitted in the form
+			hero.origin = heroForm.origin.value;
+
+			// convert object to JSON string and log it to the console
+			console.log(JSON.stringify(hero));
+			return hero;
+		}
+	</script>
+
+</body>
+</html>

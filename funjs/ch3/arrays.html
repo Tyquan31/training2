@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Arrays</title>
+</head>
+<body>
+
+	<section class="dojo">
+		<div class="quiz-body">
+			<header>
+				<h1>JS Arrays</h1>
+			</header>
+		</div>
+	</section>
+	<script>
+		const myArray = [];
+		console.log(myArray);
+		const myArrayObject = new Array();
+		console.log(myArrayObject);
+		console.log(typeof myArray);
+
+		// Init Array
+		const heroes = [];
+		// setting values to an array
+		heroes[0] = "SuperMan";
+		console.log('Heroes Array:', heroes);
+		heroes[0] = "Batman";
+		console.log('Heroes According to Batman:', heroes);
+		heroes[1] = "SuperMan";
+		heroes[2] = "Wonder Woman";
+		heroes[3] = "Flash";
+		console.log("Justice League:", heroes);
+		heroes[5] = "AquaMan";
+		console.log("Dont forget AquaMan, Justice League:", heroes);
+
+		// Array Literals
+		const avengers = ['Captain America', 'Iron Man', 'Thor', 'Hulk'];
+		console.log("The Avengers:", avengers);
+		const mixedArrayLiteral =['two', null, [], true];
+		console.log(mixedArrayLiteral);
+		// deleting values from an array
+		delete avengers[3];
+		console.log("Avengers lost a member:", avengers);
+
+		// Deconstructing Arrays (Taking values out of an array and presenting them as individual items)
+		const [x,y] = [1,2];
+		console.log('x value from deconstructed array', x);
+		// deconstructing also gives us a neat way of swapping the value of two variables over
+		[a,b] = [y,x];
+		console.log('x value from deconstructed array swapping:', a);
+		const [batman, superMan] = heroes;
+		console.log('batman value from deconstructed heroes array:', batman);
+
+		// Array Properties and Methods
+		const newAvengers = ['Captain America', 'Iron Man', 'Thor', 'Hulk', 'Hawk Eye', 'Black Widow'];
+		console.log("New Avengers Team Count:", newAvengers.length);
+		// find the last index in an array
+		let lastMemberOfAvengers = newAvengers[newAvengers.length - 1];
+		console.log('Last person to be added to the New Avengers is:', lastMemberOfAvengers);
+		// remove the last element in an array
+		console.log('New Avengers removed last person:', newAvengers.pop(), newAvengers);
+		console.log('New Avengers removed first person:', newAvengers.shift(), newAvengers);
+		let guardians = ['Starlord', 'Gamora', 'Groot', 'Rocket', 'Drax'];
+		console.log('New Avengers added a new group:', newAvengers.push(guardians), newAvengers);
+		console.log('New Avengers has a new Leader:', newAvengers.unshift('Black Panther'), newAvengers);
+
+		// Multi Demensional Arrays
+		const summer = ['Jun', 'Jul', 'Aug'];
+		const winter = ['Dec', 'Jan', 'Feb']
+		const nested = [summer, winter];
+		console.log('Multi dimensional Array:', nested);
+		const flat = [...summer, ...winter];
+		console.log('Flat Multi dimensional Array:', nested);
+
+
+	</script>
+</body>
+</html>

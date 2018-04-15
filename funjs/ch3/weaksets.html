@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Weak Sets</title>
+</head>
+<body>
+
+	<section class="dojo">
+		<div class="quiz-body">
+			<header>
+				<h1>JS Weak Sets</h1>
+			</header>
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		/*
+			Weak Sets
+			- When objects are added to sets, they will be stored there as long as the set exists, even if the original reference to the object is removed. The technical term for this is the object is prevented from being garbage-collected, which can cause a memory leak.
+		*/
+
+		let array = [1,2,3];
+		const strong = new Set().add(array);
+
+		array = null; // remove reference to the original
+		console.log('This is still collected in memory:\n', strong);
+		// The array still exists inside the set and we can get the original value of array back using the spread operator
+		array = [...strong][0];
+		console.log('The array still exists inside the set:\n', strong);
+
+		// To create a weak set, the new operator and the WeakSet() constructor in the same way that we created a set
+		const weak = new WeakSet();
+		// Only non-primitive data types can be added to weak sets. Trying to add primitive values will throw a type error
+		//weak.add(2); // Invalid
+
+		// Apart from these restrictions, weak sets behave in the same way as regular sets, and have the  has() , add() , and delete() methods that work in the same way.
+		const arr = [1,2,3];
+		weak.add(arr);
+		console.log('Array added to a weakset:\n', weak);
+
+		console.log('The DOM:\n', document);
+	</script>
+
+</body>
+</html>

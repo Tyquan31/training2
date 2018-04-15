@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Search Form</title>
+</head>
+<body>
+
+	<section class="dojo">
+		<div class="quiz-body">
+			<header>
+				<h1>JS Search Form</h1>
+			</header>
+			<form name="search" action="">
+				<input type="text" name="searchInput">
+				<br>
+				<button type="submit">search</button>
+				<button type="reset">Reset</button>
+			</form>
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		/*
+			Understanding Forms
+		*/
+
+		// Accessing Form Elements
+		// Even though there is only one form in our example, a collection will still be returned
+		const form = document.forms.search;
+		//console.log(form);
+
+		// A form object also has a	method called  elements that returns an HTML collection	of all the elements	contained in the form
+		const [input, button] = form.elements;
+		console.log(input);
+
+		/*
+			Form events
+		*/
+		//input.addEventListener('focus', () => console.log('focused'), false);
+
+		// The blur event occurs when the user moves the focus away from the form element.
+		input.addEventListener('blur', () => console.log('blured'));
+
+		// The change event occurs when the user moves the focus away from the form element after changing it. So if a user clicks in an input field and makes no changes, and then clicks elsewhere, the change event won’t fire, but the blur event will.
+		input.addEventListener('change', () => console.log('Input change event fired'));
+
+		
+
+
+		/*
+			Submitting a Form
+		*/
+		input.value = 'Search Here';
+		// Clear the form before typing
+		input.addEventListener('focus', () => {
+			if (input.value === 'Search Here') {
+				input.value = '';
+			}
+		}, false);
+		// Put the Search Here Place holder back if the form is empty
+		input.addEventListener('blur', () => {
+			if (input.value === '') {
+				input.value = 'Search Here';
+			}
+		}, false);
+
+		const searchForm = document.forms['search'];
+		searchForm.addEventListener('submit', search, false);
+		function search(event){
+			event.preventDefault();
+			console.log('Form Submitted');
+			console.log('Search Activated');
+			console.log(`You searched for: ${input.value}`);
+		}
+	</script>
+
+</body>
+</html>

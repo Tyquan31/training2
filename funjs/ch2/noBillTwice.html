@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solving a Bill error</title>
+</head>
+<body>
+
+	<h3>Make sure the user doesnt get billed twice when the button is clicked more than once</h3>
+
+	<button id="billButton" onclick="billTheUser()">Bill Me</button>
+	<br />
+	<button id="billButton" onclick="once(functionalBillTheUser)">Bill Me Functional</button>
+
+
+
+	<script type="text/javascript">
+
+		// apart of bad solution 2
+		//let clicked = false;
+
+		function billTheUser(some, sales, data) {
+			/*
+			 Bill the user
+			*/
+
+			// Bad Solution 1 (Hope for the best)
+			// Hopefully the user doesnt click twice
+
+			// Bad Solution 2 Use a global flag
+			// if (!clicked) {
+			// 	clicked = true;
+			// 	window.alert('Billing the user...');
+			// }
+
+			// Bad Solution 3 - Remove the handler
+			// document.getElementById('billButton').onclick = null;
+			// window.alert('Billing the user...');
+		}
+
+		/*
+			 Bill the user - A functional way
+		*/
+		const once = fn => {
+			let done = false;
+			return (...args) => {
+				if (!done) {
+					done = true;
+					fn(...args);
+				}
+			};
+		};
+		function functionalBillTheUser(some, sales, data) {
+			window.alert('Billing the user once...');
+		}
+
+	</script>
+
+</body>
+</html>

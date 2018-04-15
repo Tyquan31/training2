@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Sets</title>
+</head>
+<body>
+
+	<section class="dojo">
+		<div class="quiz-body">
+			<header>
+				<h1>JS Sets</h1>
+			</header>
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		/*
+			Sets
+			- A set is a data structure that represents a collection of unique values. It cannot contain any duplicate values.
+			- Sets offer a useful way to keep track of data without having to check if any values have been duplicated. It's also quick and easy to check if a particular value is in a set, which can be	a slow operation if an array is used.
+		*/
+
+		// Creating a set
+		const list = new Set();
+
+		// Adding Values to Sets (We can also chain the .add() method)
+		list.add(1);
+		console.log(list);
+		// you can also add multiple values  to a set by placing them inside an array
+		const myNumbers =new Set([1,2,3, 3, 2]);
+		console.log(myNumbers);
+
+		// Set methods
+		console.log(myNumbers.size);
+		console.log(myNumbers.has(1));
+		myNumbers.delete(2);
+		myNumbers.clear();
+
+		// Converting sets to Arrays
+		const shoppingSet = new Set().add('Apples').add('Bananas').add('Beans');
+		const shoppingArray = [...shoppingSet];
+		console.log(shoppingArray);
+		
+	</script>
+
+</body>
+</html>
