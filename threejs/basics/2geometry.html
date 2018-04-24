@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Threejs Basic Geometry</title>
+	<style>
+		body { margin: 0; overflow: hidden; }
+		canvas { width: 100%; height: 100%; background-color: red; }
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+
+	<script type="text/javascript" src="./libs/three.js"></script>
+	<script type="text/javascript">
+		/* settings */
+		var renderer = new THREE.WebGLRenderer({
+			canvas: document.getElementById('myCanvas'),
+			antialias: true
+		});
+		// background
+		renderer.setClearColor(0x00ff00);
+		// better renders based on screen
+		renderer.setPixelRatio(window.devicePixelRatio);
+		// set the size of the canvas
+		renderer.setSize(window.innerWidth, window.innerHeight);
+
+		// setup the camera
+		var camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 3000);
+
+		// setup the scene
+		var scene = new THREE.Scene();
+
+		/* add some lighting */
+		var light = new THREE.AmbientLight(0xffffff, 0.5);
+		scene.add(light);
+		var light1 = new THREE.PointLight(0xffffff, 0.5);
+		scene.add(light1);
+
+		
+		/* triangle model */
+		// var geometry = new THREE.Geometry();
+		// geometry.vertices.push(
+		// 	new THREE.Vector3(-10,10,0),
+		// 	new THREE.Vector3(-10,-10,0),
+		// 	new THREE.Vector3(10,10,0)
+		// );
+		// geometry.faces.push(new THREE.Face3(0,1,2));
+
+		/* Buffer Model (Triangle) */
+		var geometry = new THREE.BufferGeometry();
+		var vertices = new Float32Array([
+				-10.0,-10.0,0.0,
+				10.0,-10.0,0.0,
+				10.0,10.0,0.0
+			]);
+		geometry.addAttribute('position', new THREE.BufferAttribute(vertices, 3));
+
+
+
+		/* create a mesh with the object */
+		var material = new THREE.MeshLambertMaterial();
+		var mesh = new THREE.Mesh(geometry, material);
+		mesh.position.z = -1000;
+
+		scene.add(mesh);
+
+		// render the scene to the screen (looped)
+		requestAnimationFrame(render);
+		function render(){
+			mesh.rotation.x += 0.07;
+			mesh.rotation.y += 0.07;
+			renderer.render(scene, camera);
+			requestAnimationFrame(render);
+		}
+	</script>
+</body>
+</html>
